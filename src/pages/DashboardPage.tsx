@@ -13,27 +13,27 @@ const stats = [
 /** Main dashboard page with stats, charts, and activity */
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground text-sm mt-1">Welcome back! Here's what's happening today.</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">Dashboard</h1>
+        <p className="text-muted-foreground text-xs sm:text-sm mt-1">Welcome back! Here's what's happening today.</p>
       </div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {stats.map((s, i) => (
           <StatsCard key={s.title} {...s} index={i} />
         ))}
       </div>
 
       {/* Charts row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <RevenueChart />
         <TrafficChart />
       </div>
 
       {/* Bottom row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         <div className="lg:col-span-2">
           <CategoryChart />
         </div>

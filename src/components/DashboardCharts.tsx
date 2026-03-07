@@ -50,14 +50,14 @@ const tooltipStyle = {
 /** Revenue bar chart */
 export function RevenueChart() {
   return (
-    <div className="glass-card rounded-xl p-6 animate-fade-in" style={{ animationDelay: "400ms" }}>
-      <h3 className="text-lg font-semibold text-card-foreground mb-1">Revenue Overview</h3>
-      <p className="text-sm text-muted-foreground mb-6">Monthly revenue and order trends</p>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="glass-card rounded-xl p-4 sm:p-6 animate-fade-in" style={{ animationDelay: "400ms" }}>
+      <h3 className="text-base sm:text-lg font-semibold text-card-foreground mb-1">Revenue Overview</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Monthly revenue and order trends</p>
+      <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
         <BarChart data={barData}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 47%, 14%)" />
-          <XAxis dataKey="name" stroke="hsl(218, 11%, 55%)" fontSize={12} />
-          <YAxis stroke="hsl(218, 11%, 55%)" fontSize={12} />
+          <XAxis dataKey="name" stroke="hsl(218, 11%, 55%)" fontSize={11} />
+          <YAxis stroke="hsl(218, 11%, 55%)" fontSize={11} />
           <Tooltip contentStyle={tooltipStyle} />
           <Bar dataKey="revenue" fill="hsl(221, 83%, 53%)" radius={[6, 6, 0, 0]} />
           <Bar dataKey="orders" fill="hsl(160, 84%, 39%)" radius={[6, 6, 0, 0]} />
@@ -70,10 +70,10 @@ export function RevenueChart() {
 /** User traffic area chart */
 export function TrafficChart() {
   return (
-    <div className="glass-card rounded-xl p-6 animate-fade-in" style={{ animationDelay: "500ms" }}>
-      <h3 className="text-lg font-semibold text-card-foreground mb-1">User Traffic</h3>
-      <p className="text-sm text-muted-foreground mb-6">Weekly active users and sessions</p>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="glass-card rounded-xl p-4 sm:p-6 animate-fade-in" style={{ animationDelay: "500ms" }}>
+      <h3 className="text-base sm:text-lg font-semibold text-card-foreground mb-1">User Traffic</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Weekly active users and sessions</p>
+      <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
         <AreaChart data={lineData}>
           <defs>
             <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
@@ -86,8 +86,8 @@ export function TrafficChart() {
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 47%, 14%)" />
-          <XAxis dataKey="name" stroke="hsl(218, 11%, 55%)" fontSize={12} />
-          <YAxis stroke="hsl(218, 11%, 55%)" fontSize={12} />
+          <XAxis dataKey="name" stroke="hsl(218, 11%, 55%)" fontSize={11} />
+          <YAxis stroke="hsl(218, 11%, 55%)" fontSize={11} />
           <Tooltip contentStyle={tooltipStyle} />
           <Area type="monotone" dataKey="users" stroke="hsl(221, 83%, 53%)" fillOpacity={1} fill="url(#colorUsers)" strokeWidth={2} />
           <Area type="monotone" dataKey="sessions" stroke="hsl(280, 67%, 54%)" fillOpacity={1} fill="url(#colorSessions)" strokeWidth={2} />
@@ -100,18 +100,18 @@ export function TrafficChart() {
 /** Category breakdown pie chart */
 export function CategoryChart() {
   return (
-    <div className="glass-card rounded-xl p-6 animate-fade-in" style={{ animationDelay: "600ms" }}>
-      <h3 className="text-lg font-semibold text-card-foreground mb-1">Sales by Category</h3>
-      <p className="text-sm text-muted-foreground mb-6">Product category distribution</p>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="glass-card rounded-xl p-4 sm:p-6 animate-fade-in" style={{ animationDelay: "600ms" }}>
+      <h3 className="text-base sm:text-lg font-semibold text-card-foreground mb-1">Sales by Category</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Product category distribution</p>
+      <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
         <PieChart>
-          <Pie data={pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={100} dataKey="value" paddingAngle={4} strokeWidth={0}>
+          <Pie data={pieData} cx="50%" cy="50%" innerRadius={50} outerRadius={90} dataKey="value" paddingAngle={4} strokeWidth={0}>
             {pieData.map((_, i) => (
               <Cell key={i} fill={COLORS[i % COLORS.length]} />
             ))}
           </Pie>
           <Tooltip contentStyle={tooltipStyle} />
-          <Legend wrapperStyle={{ fontSize: "13px" }} />
+          <Legend wrapperStyle={{ fontSize: "12px" }} />
         </PieChart>
       </ResponsiveContainer>
     </div>

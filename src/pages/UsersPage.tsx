@@ -19,10 +19,10 @@ export default function UsersPage() {
   const totalPages = data ? Math.ceil(data.total / limit) : 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">Users</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage and view all registered users.</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">Users</h1>
+        <p className="text-muted-foreground text-xs sm:text-sm mt-1">Manage and view all registered users.</p>
       </div>
 
       {/* Search */}

@@ -20,15 +20,15 @@ export default function ProductsPage() {
   const totalPages = data ? Math.ceil(data.total / limit) : 0;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Products</h1>
-          <p className="text-muted-foreground text-sm mt-1">Browse and manage your product catalog.</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground">Products</h1>
+          <p className="text-muted-foreground text-xs sm:text-sm mt-1">Browse and manage your product catalog.</p>
         </div>
         <button
           onClick={() => setModalProduct({ title: "", price: 0, category: "", description: "" })}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
         >
           <Plus className="h-4 w-4" /> Add Product
         </button>
@@ -47,11 +47,11 @@ export default function ProductsPage() {
       </div>
 
       {/* Product grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {isLoading
           ? Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="glass-card rounded-xl p-4 space-y-3 animate-pulse">
-                <div className="h-40 bg-muted rounded-lg" />
+              <div key={i} className="glass-card rounded-xl p-3 sm:p-4 space-y-3 animate-pulse">
+                <div className="h-36 sm:h-40 bg-muted rounded-lg" />
                 <div className="h-4 bg-muted rounded w-3/4" />
                 <div className="h-4 bg-muted rounded w-1/2" />
               </div>
@@ -62,7 +62,7 @@ export default function ProductsPage() {
                 className="glass-card rounded-xl overflow-hidden hover:shadow-md transition-all duration-300 animate-fade-in group"
                 style={{ animationDelay: `${i * 50}ms` }}
               >
-                <div className="relative h-44 bg-muted overflow-hidden">
+                <div className="relative h-36 sm:h-44 bg-muted overflow-hidden">
                   <img
                     src={product.thumbnail}
                     alt={product.title}
@@ -81,13 +81,13 @@ export default function ProductsPage() {
                     </button>
                   </div>
                 </div>
-                <div className="p-4 space-y-2">
+                <div className="p-3 sm:p-4 space-y-2">
                   <span className="text-xs font-medium text-primary capitalize bg-primary/10 px-2 py-0.5 rounded-full">
                     {product.category}
                   </span>
                   <h3 className="font-semibold text-card-foreground text-sm line-clamp-1">{product.title}</h3>
                   <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-foreground">${product.price}</span>
+                    <span className="text-base sm:text-lg font-bold text-foreground">${product.price}</span>
                     <div className="flex items-center gap-1 text-warning">
                       <Star className="h-3.5 w-3.5 fill-current" />
                       <span className="text-xs font-medium">{product.rating}</span>

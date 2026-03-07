@@ -1,9 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  LayoutDashboard, Users, Package, ShoppingCart, BarChart3, Settings, ChevronLeft, ChevronRight, X
+  LayoutDashboard, Users, Package, ShoppingCart, BarChart3, Settings, ChevronLeft, ChevronRight, X, LogOut
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
@@ -24,6 +25,14 @@ interface Props {
 /** Collapsible sidebar navigation with mobile drawer */
 export function AppSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Props) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    onMobileClose();
+    navigate("/");
+  };
 
   const sidebarContent = (
     <aside
@@ -79,6 +88,17 @@ export function AppSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: P
           );
         })}
       </nav>
+
+      {/* Mobile Logout Button */}
+      <div className="lg:hidden p-3 border-t border-sidebar-border">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all duration-200"
+        >
+          <LogOut className="h-5 w-5 flex-shrink-0" />
+          {!collapsed && <span>Logout</span>}
+        </button>
+      </div>
 
       {/* Collapse toggle - desktop only */}
       <div className="hidden lg:block p-3 border-t border-sidebar-border">

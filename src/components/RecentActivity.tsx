@@ -12,20 +12,20 @@ const activities = [
 /** Recent activity feed for the dashboard */
 export function RecentActivity() {
   return (
-    <div className="glass-card rounded-xl p-6 animate-fade-in" style={{ animationDelay: "700ms" }}>
-      <h3 className="text-lg font-semibold text-card-foreground mb-1">Recent Activity</h3>
-      <p className="text-sm text-muted-foreground mb-6">Latest events and notifications</p>
-      <div className="space-y-4">
+    <div className="glass-card rounded-xl p-4 sm:p-6 animate-fade-in" style={{ animationDelay: "700ms" }}>
+      <h3 className="text-base sm:text-lg font-semibold text-card-foreground mb-1">Recent Activity</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">Latest events and notifications</p>
+      <div className="space-y-3 sm:space-y-4">
         {activities.map((a, i) => (
-          <div key={i} className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent/50 transition-colors">
-            <div className={`h-9 w-9 rounded-lg bg-accent flex items-center justify-center ${a.color}`}>
+          <div key={i} className="flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-lg hover:bg-accent/50 transition-colors">
+            <div className={`h-8 w-8 sm:h-9 sm:w-9 rounded-lg bg-accent flex items-center justify-center flex-shrink-0 ${a.color}`}>
               <a.icon className="h-4 w-4" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-card-foreground truncate">{a.text}</p>
-              <p className="text-xs text-muted-foreground">{a.user}</p>
+              <p className="text-xs sm:text-sm font-medium text-card-foreground truncate">{a.text}</p>
+              <p className="text-xs text-muted-foreground truncate">{a.user}</p>
             </div>
-            <span className="text-xs text-muted-foreground whitespace-nowrap">{a.time}</span>
+            <span className="text-xs text-muted-foreground whitespace-nowrap hidden sm:inline">{a.time}</span>
           </div>
         ))}
       </div>
