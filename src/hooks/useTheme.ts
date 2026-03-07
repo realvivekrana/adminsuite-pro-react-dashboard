@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 
-/** Hook to manage dark mode via class on <html> */
+/** Hook to manage dark mode - defaults to dark theme */
 export function useTheme() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      // Default to dark theme
+      const stored = localStorage.getItem("theme");
+      if (stored) {
+        return stored === "dark";
+      }
+      // Default to dark if no preference stored
+      return true;
     }
-    return false;
+    return true; // Default to dark on server
   });
 
   useEffect(() => {
