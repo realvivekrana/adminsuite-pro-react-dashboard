@@ -1,205 +1,146 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart3, ShoppingCart, Users, TrendingUp, Star, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+
+const kpis = [
+  { label: "Total Revenue",  value: "$128,430", change: "+18.2%", icon: TrendingUp,  color: "text-[#008060]",  bg: "bg-[#008060]/8"  },
+  { label: "Total Orders",   value: "1,042",    change: "+12.5%", icon: ShoppingCart,color: "text-blue-600",   bg: "bg-blue-50"      },
+  { label: "Customers",      value: "8,340",    change: "+9.1%",  icon: Users,       color: "text-violet-600", bg: "bg-violet-50"    },
+  { label: "Avg. Order Val", value: "$123.25",  change: "+5.2%",  icon: BarChart3,   color: "text-amber-600",  bg: "bg-amber-50"     },
+];
+
+const badges = ["React + Vite", "Tailwind CSS", "Recharts", "Framer Motion", "Zustand"];
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative overflow-hidden min-h-[90vh] flex items-center">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-background" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
-      
-      {/* Animated Glowing Orbs */}
-      <motion.div
-        className="absolute top-20 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center max-w-5xl mx-auto">
-          {/* Animated Badge */}
+    <section id="home" className="relative overflow-hidden bg-white">
+      {/* Subtle grid */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.4]" />
+      {/* Top gradient */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#008060]/30 to-transparent" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8 backdrop-blur-sm hover:bg-primary/15 transition-all duration-300 group cursor-default"
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#008060]/8 border border-[#008060]/20 mb-6"
           >
-            <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">Introducing AdminSuite Pro v2.0</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[#008060] animate-pulse" />
+            <span className="text-xs font-semibold text-[#008060]">Production-ready Admin Dashboard</span>
           </motion.div>
 
-          {/* Main Heading with Gradient */}
+          {/* Heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight tracking-tight"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-5 leading-[1.1] tracking-tight"
           >
-            Modern React Admin
-            <br />
-            <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-primary via-blue-400 to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                Dashboard
+            Welcome to{" "}
+            <span className="relative">
+              <span className="bg-gradient-to-r from-[#008060] to-emerald-500 bg-clip-text text-transparent">
+                Admin Dashboard
               </span>
-              <motion.span
-                className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-blue-500/20 blur-2xl -z-10"
-                animate={{
-                  opacity: [0.5, 0.8, 0.5],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+              <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 300 6" fill="none">
+                <path d="M0 3 Q75 0 150 3 Q225 6 300 3" stroke="#008060" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
+              </svg>
             </span>
-            <br />
-            for Powerful Analytics
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-lg sm:text-xl text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed"
           >
-            Build powerful admin dashboards with real-time analytics, seamless user management, 
-            and beautiful data visualization. Everything you need to manage your business in one place.
+            A Shopify-inspired admin panel with real-time analytics, order management,
+            customer insights, and beautiful data visualization — all in one place.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            transition={{ duration: 0.5, delay: 0.22 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10"
           >
-            <Link to="/register">
-              <Button size="lg" className="h-14 px-8 text-base group bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300">
-                Get Started Free
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+            <Link to="/register"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#008060] text-white text-sm font-semibold hover:bg-[#006e52] transition-all shadow-md shadow-[#008060]/20 hover:shadow-lg hover:shadow-[#008060]/25 hover:-translate-y-0.5 group">
+              Get started free
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
-            <Link to="/dashboard">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base group border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300">
-                <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                View Live Demo
-              </Button>
+            <Link to="/dashboard"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-gray-700 text-sm font-semibold border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm hover:-translate-y-0.5">
+              View live demo
             </Link>
           </motion.div>
 
-          {/* Animated Dashboard Mockup */}
+          {/* Tech badges */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative max-w-5xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+            className="flex flex-wrap items-center justify-center gap-2 mb-14"
           >
-            {/* Glow Effect */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-blue-500/30 to-primary/30 rounded-3xl blur-3xl opacity-50" />
-            
-            {/* Mockup Container */}
-            <div className="relative bg-card/30 backdrop-blur-sm border border-primary/30 rounded-2xl overflow-hidden shadow-2xl">
-              {/* Browser Chrome */}
-              <div className="bg-card/50 border-b border-border/50 px-4 py-3 flex items-center gap-2">
-                <div className="flex gap-2">
-                  <div className="h-3 w-3 rounded-full bg-red-500/60" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
-                  <div className="h-3 w-3 rounded-full bg-green-500/60" />
+            {badges.map(b => (
+              <span key={b} className="px-3 py-1 rounded-full bg-gray-100 text-gray-500 text-xs font-medium border border-gray-200">
+                {b}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* KPI Cards preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto"
+          >
+            {kpis.map((k, i) => (
+              <motion.div
+                key={k.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 + i * 0.07 }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="bg-white border border-gray-100 rounded-xl p-4 text-left shadow-sm hover:shadow-md transition-all"
+              >
+                <div className={`h-8 w-8 rounded-lg ${k.bg} flex items-center justify-center mb-3`}>
+                  <k.icon className={`h-4 w-4 ${k.color}`} />
                 </div>
-                <div className="flex-1 mx-4">
-                  <div className="bg-background/50 rounded px-3 py-1.5 text-xs text-muted-foreground border border-border/30 max-w-md">
-                    https://adminsuite.pro/dashboard
-                  </div>
-                </div>
-              </div>
+                <p className="text-lg font-bold text-gray-900">{k.value}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{k.label}</p>
+                <span className="inline-block mt-1.5 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full">
+                  {k.change}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
 
-              {/* Dashboard Preview */}
-              <div className="aspect-video bg-gradient-to-br from-primary/10 via-background to-card/50 relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
-                
-                {/* Floating UI Elements */}
-                <motion.div
-                  className="absolute top-8 left-8 bg-card/80 backdrop-blur-sm border border-primary/30 rounded-lg p-4 shadow-lg"
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <Sparkles className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Total Revenue</div>
-                      <div className="text-lg font-bold text-foreground">$124,592</div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="absolute top-8 right-8 bg-card/80 backdrop-blur-sm border border-primary/30 rounded-lg p-4 shadow-lg"
-                  animate={{
-                    y: [0, -15, 0],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5,
-                  }}
-                >
-                  <div className="text-xs text-muted-foreground mb-2">Active Users</div>
-                  <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-                    2,847
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-card/80 backdrop-blur-sm border border-primary/30 rounded-lg px-6 py-3 shadow-lg"
-                  animate={{
-                    y: [0, -12, 0],
-                  }}
-                  transition={{
-                    duration: 4.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-sm text-muted-foreground">Real-time sync active</span>
-                  </div>
-                </motion.div>
-              </div>
+          {/* Social proof */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 text-sm text-gray-500"
+          >
+            <div className="flex items-center gap-1.5">
+              {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />)}
+              <span className="ml-1 font-medium text-gray-700">4.9/5</span>
+            </div>
+            <span className="hidden sm:block text-gray-300">·</span>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle className="h-4 w-4 text-[#008060]" />
+              <span>No backend required</span>
+            </div>
+            <span className="hidden sm:block text-gray-300">·</span>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle className="h-4 w-4 text-[#008060]" />
+              <span>Mobile-first design</span>
             </div>
           </motion.div>
         </div>

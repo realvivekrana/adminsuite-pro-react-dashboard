@@ -1,130 +1,90 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Menu, X, Zap } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const links = [
+  { label: "Features", href: "#features" },
+  { label: "Pricing",  href: "#pricing"  },
+  { label: "About",    href: "#about"    },
+];
 
 export function LandingNavbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <svg className="h-8 w-8" viewBox="-11.5 -10.23174 23 20.46348" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
-              <g stroke="#61dafb" strokeWidth="1" fill="none">
-                <ellipse rx="11" ry="4.2"/>
-                <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-                <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-              </g>
-            </svg>
-            <span className="text-xl font-bold text-foreground">AdminSuite Pro</span>
+          <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
+            <div className="h-8 w-8 rounded-lg bg-[#008060] flex items-center justify-center shadow-sm">
+              <Zap className="h-4 w-4 text-white" />
+            </div>
+            <span className="text-base font-bold text-gray-900">Shopify Admin</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#home" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 relative group">
-              Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
-            </a>
-            <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 relative group">
-              Features
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
-            </a>
-            <a href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 relative group">
-              Pricing
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
-            </a>
-            <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 relative group">
-              About
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
-            </a>
-            <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 relative group">
-              Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
-            </a>
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-1">
+            {links.map(l => (
+              <a key={l.href} href={l.href}
+                className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all">
+                {l.label}
+              </a>
+            ))}
           </div>
 
-          {/* Desktop Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="ghost" size="sm" className="hover:bg-primary/10 hover:text-primary transition-all">
-                Login
-              </Button>
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-2">
+            <Link to="/login"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all">
+              Sign in
             </Link>
-            <Link to="/register">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all">
-                Get Started
-              </Button>
+            <Link to="/register"
+              className="px-4 py-2 text-sm font-semibold text-white bg-[#008060] hover:bg-[#006e52] rounded-lg transition-all shadow-sm">
+              Get started
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {/* Mobile toggle */}
+          <button onClick={() => setOpen(v => !v)}
+            className="md:hidden h-9 w-9 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-600">
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border/50 bg-card/50 backdrop-blur-xl">
-          <div className="px-4 py-4 space-y-1">
-            <a
-              href="#home"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-            >
-              Home
-            </a>
-            <a
-              href="#features"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-            >
-              Features
-            </a>
-            <a
-              href="#pricing"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-            >
-              Pricing
-            </a>
-            <a
-              href="#about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-            >
-              About
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 px-4 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
-            >
-              Contact
-            </a>
-            <div className="pt-4 space-y-2 border-t border-border/50 mt-4">
-              <Link to="/login" className="block" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full border-primary/30 hover:bg-primary/10">
-                  Login
-                </Button>
-              </Link>
-              <Link to="/register" className="block" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25">
-                  Get Started
-                </Button>
-              </Link>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden border-t border-gray-100 bg-white overflow-hidden"
+          >
+            <div className="px-4 py-3 space-y-1">
+              {links.map(l => (
+                <a key={l.href} href={l.href} onClick={() => setOpen(false)}
+                  className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:text-[#008060] hover:bg-gray-50 rounded-lg transition-all">
+                  {l.label}
+                </a>
+              ))}
+              <div className="pt-3 mt-3 border-t border-gray-100 space-y-2">
+                <Link to="/login" onClick={() => setOpen(false)}
+                  className="block w-full text-center px-4 py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
+                  Sign in
+                </Link>
+                <Link to="/register" onClick={() => setOpen(false)}
+                  className="block w-full text-center px-4 py-2.5 text-sm font-semibold text-white bg-[#008060] hover:bg-[#006e52] rounded-lg transition-all">
+                  Get started free
+                </Link>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

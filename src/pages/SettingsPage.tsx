@@ -3,11 +3,9 @@ import { User, Lock, Bell, Palette, Shield, Camera, Mail, Phone, Key, Smartphone
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useThemeContext } from "@/components/ThemeProvider";
 import { motion } from "framer-motion";
 
 export default function SettingsPage() {
-  const { theme, toggleTheme } = useThemeContext();
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [pushNotifications, setPushNotifications] = useState(false);
   const [marketingEmails, setMarketingEmails] = useState(true);
@@ -261,18 +259,16 @@ export default function SettingsPage() {
         </div>
 
         <div className="space-y-4">
-          {/* Theme Toggle */}
+          {/* Theme info */}
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center gap-3">
               <Monitor className="h-5 w-5 text-muted-foreground" />
               <div>
                 <h3 className="text-sm font-medium text-foreground">Theme</h3>
-                <p className="text-xs text-muted-foreground">Current: {theme === "dark" ? "Dark" : "Light"} Mode</p>
+                <p className="text-xs text-muted-foreground">Light mode (default)</p>
               </div>
             </div>
-            <Button variant="outline" size="sm" onClick={toggleTheme}>
-              Toggle Theme
-            </Button>
+            <span className="text-xs bg-secondary text-muted-foreground px-2.5 py-1 rounded-lg">Light</span>
           </div>
         </div>
       </motion.div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,160 +6,121 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 224 71% 4%;
+    /* ── Light-only palette ── */
+    --background: 0 0% 97%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 158 64% 25%;          /* Shopify green #008060 */
+    --primary-foreground: 0 0% 100%;
     --secondary: 220 14% 96%;
-    --secondary-foreground: 220 9% 46%;
+    --secondary-foreground: 220 9% 40%;
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;
-    --accent: 220 14% 96%;
-    --accent-foreground: 224 71% 4%;
+    --accent: 220 14% 93%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 221 83% 53%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 158 64% 25%;
     --radius: 0.75rem;
-    --chart-1: 221 83% 53%;
-    --chart-2: 160 84% 39%;
-    --chart-3: 30 95% 55%;
-    --chart-4: 280 67% 54%;
-    --chart-5: 340 75% 55%;
-    --success: 160 84% 39%;
+    --success: 158 64% 25%;
     --success-foreground: 0 0% 100%;
-    --warning: 30 95% 55%;
+    --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --info: 221 83% 53%;
-    --info-foreground: 0 0% 100%;
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 224 71% 4%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
     --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 224 71% 4%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 221 83% 53%;
-  }
-
-  .dark {
-    --background: 224 71% 4%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 210 40% 80%;
-    --muted: 222 47% 12%;
-    --muted-foreground: 218 11% 55%;
-    --accent: 222 47% 12%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 222 47% 14%;
-    --input: 222 47% 14%;
-    --ring: 221 83% 53%;
-    --success: 160 84% 39%;
-    --success-foreground: 0 0% 100%;
-    --warning: 30 95% 55%;
-    --warning-foreground: 0 0% 100%;
-    --info: 221 83% 53%;
-    --info-foreground: 0 0% 100%;
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 47% 12%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 47% 14%;
-    --sidebar-ring: 221 83% 53%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 90%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
+  html { @apply scroll-smooth; scroll-padding-top: 80px; }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+    -webkit-font-smoothing: antialiased;
   }
+  h1 { @apply text-2xl sm:text-3xl font-bold tracking-tight leading-tight; }
+  h2 { @apply text-xl sm:text-2xl font-bold tracking-tight leading-snug; }
+  h3 { @apply text-base sm:text-lg font-semibold leading-snug; }
+  p  { @apply leading-relaxed; }
 }
 
 @layer utilities {
+  /* Card styles */
+  .card {
+    @apply bg-white border border-gray-100 rounded-xl shadow-sm;
+  }
+  .card-hover {
+    @apply hover:shadow-md hover:border-gray-200 transition-all duration-200;
+  }
+  /* Legacy glass-card — now just a clean white card */
   .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 shadow-sm;
+    @apply bg-white border border-gray-100 rounded-xl shadow-sm;
   }
+  /* Page section background */
+  .section-bg {
+    @apply bg-gray-50;
+  }
+  /* Subtle gradient text */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary to-[hsl(var(--chart-4))] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#008060] to-emerald-500 bg-clip-text text-transparent;
   }
-  .stat-card-gradient {
-    @apply bg-gradient-to-br from-card to-card/80;
+  /* Fade-in animation */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out both;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out both;
   }
 }
 
-/* Grid pattern background */
+/* ── Animations ─────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-float-delayed { animation: float 7s ease-in-out infinite 1s; }
+
+/* Skeleton shimmer */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+/* Subtle grid pattern for landing */
 .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, hsl(220 13% 90%) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(220 13% 90%) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* Floating animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-30px);
-  }
-}
-
-@keyframes gradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 8s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 3s ease infinite;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Scroll padding for fixed navbar */
-html {
-  scroll-padding-top: 80px;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(220 13% 85%); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(220 13% 75%); }

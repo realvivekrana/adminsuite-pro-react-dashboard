@@ -1,57 +1,34 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, ReactNode } from "react";
 
-type Theme = "dark" | "light";
-
+// Light-only — dark mode removed per design spec
 type ThemeContextType = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  theme: "light";
+  setTheme: (theme: "light") => void;
   toggleTheme: () => void;
 };
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextType>({
+  theme: "light",
+  setTheme: () => {},
+  toggleTheme: () => {},
+});
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage first, default to dark
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("theme") as Theme;
-      return stored || "dark";
-    }
-    return "dark";
-  });
-
   useEffect(() => {
+    // Always enforce light mode
     const root = document.documentElement;
-    
-    // Remove both classes first
-    root.classList.remove("light", "dark");
-    
-    // Add the current theme
-    root.classList.add(theme);
-    
-    // Store in localStorage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-  };
-
-  const toggleTheme = () => {
-    setThemeState((prev) => (prev === "dark" ? "light" : "dark"));
-  };
+    root.classList.remove("dark");
+    root.classList.add("light");
+    localStorage.setItem("theme", "light");
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme: "light", setTheme: () => {}, toggleTheme: () => {} }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
 export function useThemeContext() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useThemeContext must be used within a ThemeProvider");
-  }
-  return context;
+  return useContext(ThemeContext);
 }

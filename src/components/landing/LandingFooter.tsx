@@ -1,177 +1,78 @@
 import { Link } from "react-router-dom";
-import { Github, Twitter, Linkedin, Mail, ArrowUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Twitter, Linkedin, Zap } from "lucide-react";
 
 export function LandingFooter() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer id="contact" className="relative border-t border-border/50 bg-card/30 backdrop-blur-sm">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-card/50" />
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-          {/* Brand - Takes 2 columns on large screens */}
-          <div className="sm:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <svg className="h-8 w-8" viewBox="-11.5 -10.23174 23 20.46348" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
-                <g stroke="#61dafb" strokeWidth="1" fill="none">
-                  <ellipse rx="11" ry="4.2"/>
-                  <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-                  <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-                </g>
-              </svg>
-              <span className="text-xl font-bold text-foreground">AdminSuite Pro</span>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-sm mb-6 leading-relaxed">
-              Modern React Admin Dashboard with analytics, charts, user management and responsive design. Built for developers who demand excellence.
+    <footer id="contact" className="bg-white border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
+          {/* Brand */}
+          <div className="col-span-2 sm:col-span-4 lg:col-span-2">
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <div className="h-8 w-8 rounded-lg bg-[#008060] flex items-center justify-center">
+                <Zap className="h-4 w-4 text-white" />
+              </div>
+              <span className="text-base font-bold text-gray-900">Shopify Admin</span>
+            </Link>
+            <p className="text-sm text-gray-500 leading-relaxed max-w-xs mb-5">
+              A production-quality Shopify-inspired admin dashboard built with React, Tailwind CSS, and Framer Motion.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-9 w-9 rounded-lg bg-card/50 border border-border/50 hover:bg-primary/10 hover:border-primary/50 flex items-center justify-center transition-all duration-300 group"
-                aria-label="GitHub"
-              >
-                <Github className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-9 w-9 rounded-lg bg-card/50 border border-border/50 hover:bg-primary/10 hover:border-primary/50 flex items-center justify-center transition-all duration-300 group"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-9 w-9 rounded-lg bg-card/50 border border-border/50 hover:bg-primary/10 hover:border-primary/50 flex items-center justify-center transition-all duration-300 group"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a
-                href="mailto:contact@adminsuite.pro"
-                className="h-9 w-9 rounded-lg bg-card/50 border border-border/50 hover:bg-primary/10 hover:border-primary/50 flex items-center justify-center transition-all duration-300 group"
-                aria-label="Email"
-              >
-                <Mail className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
+            <div className="flex gap-2">
+              {[
+                { icon: Github,   href: "https://github.com",   label: "GitHub"   },
+                { icon: Twitter,  href: "https://twitter.com",  label: "Twitter"  },
+                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+              ].map(s => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                  className="h-9 w-9 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[#008060] hover:border-[#008060]/30 hover:bg-[#008060]/5 transition-all">
+                  <s.icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Product Links */}
+          {/* Product */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4 text-sm">Product</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link to="/login" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Login
-                </Link>
-              </li>
+            <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-4">Product</h4>
+            <ul className="space-y-2.5">
+              {[["Features","#features"],["Pricing","#pricing"],["Dashboard","/dashboard"],["Sign in","/login"]].map(([l,h]) => (
+                <li key={l}>
+                  {h.startsWith("/") ? (
+                    <Link to={h} className="text-sm text-gray-500 hover:text-[#008060] transition-colors">{l}</Link>
+                  ) : (
+                    <a href={h} className="text-sm text-gray-500 hover:text-[#008060] transition-colors">{l}</a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Company Links */}
+          {/* Company */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4 text-sm">Company</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Blog
-                </a>
-              </li>
+            <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-4">Company</h4>
+            <ul className="space-y-2.5">
+              {[["About","#about"],["Blog","#"],["Careers","#"],["Contact","#contact"]].map(([l,h]) => (
+                <li key={l}><a href={h} className="text-sm text-gray-500 hover:text-[#008060] transition-colors">{l}</a></li>
+              ))}
             </ul>
           </div>
 
-          {/* Resources Links */}
+          {/* Resources */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4 text-sm">Resources</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Support
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  API Reference
-                </a>
-              </li>
+            <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-4">Resources</h4>
+            <ul className="space-y-2.5">
+              {[["Docs","#"],["API Reference","#"],["GitHub","https://github.com"],["Support","#"]].map(([l,h]) => (
+                <li key={l}><a href={h} className="text-sm text-gray-500 hover:text-[#008060] transition-colors">{l}</a></li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} AdminSuite Pro. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
-            </a>
-            <Button
-              onClick={scrollToTop}
-              variant="outline"
-              size="sm"
-              className="border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all group"
-            >
-              <ArrowUp className="h-4 w-4 mr-2 group-hover:-translate-y-1 transition-transform" />
-              Back to Top
-            </Button>
+        <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-400">© {new Date().getFullYear()} Shopify Admin Dashboard. All rights reserved.</p>
+          <div className="flex items-center gap-5">
+            <a href="#" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Privacy Policy</a>
+            <a href="#" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>
