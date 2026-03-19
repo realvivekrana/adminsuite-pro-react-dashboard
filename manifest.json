@@ -1,0 +1,17 @@
+{
+  "name": "AdminSuite Pro",
+  "short_name": "AdminSuite Pro",
+  "description": "AdminSuite Pro is a modern React Admin Dashboard with analytics, charts, user management and responsive design.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#20232a",
+  "theme_color": "#61dafb",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

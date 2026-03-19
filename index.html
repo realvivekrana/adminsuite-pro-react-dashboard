@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      localStorage.setItem('theme', 'light');
+      // Show any JS crash visibly on screen
+      window.onerror = function(msg, src, line, col, err) {
+        document.getElementById('root').innerHTML =
+          '<div style="padding:32px;font-family:monospace;background:#fff1f2;border:2px solid #f87171;margin:20px;border-radius:12px">'
+          + '<h2 style="color:#dc2626;margin:0 0 12px">Runtime Error</h2>'
+          + '<p style="margin:0 0 8px"><b>' + msg + '</b></p>'
+          + '<p style="color:#666;font-size:12px">' + src + ' line ' + line + '</p>'
+          + '<pre style="background:#fff;padding:12px;border-radius:8px;overflow:auto;font-size:11px;margin-top:12px">'
+          + (err && err.stack ? err.stack : '') + '</pre></div>';
+        return false;
+      };
+    </script>
+    <title>AdminSuite Pro – React Admin Dashboard</title>
+    <meta name="description" content="Shopify-inspired admin dashboard built with React, TypeScript and Tailwind CSS." />
+    <link rel="icon" type="image/svg+xml" href="/adminsuite-pro-react-dashboard/favicon.svg" />
+    <link rel="alternate icon" href="/adminsuite-pro-react-dashboard/favicon.ico" />
+    <link rel="manifest" href="/adminsuite-pro-react-dashboard/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/adminsuite-pro-react-dashboard/assets/index-C1qTKzqO.js"></script>
+    <link rel="stylesheet" crossorigin href="/adminsuite-pro-react-dashboard/assets/index-hCfCh0se.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
